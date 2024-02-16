@@ -6,7 +6,9 @@ const Home = () => {
 
   useEffect(() => {
     async function getCategories() {
-      const res = await fetch("http://localhost:8000/event-categories");
+      const res = await fetch(
+        "https://eventsbackend-7ady.onrender.com/event-categories"
+      );
       if (!res.ok) throw Error({ message: "Fetching Error" });
       const data = await res.json();
       setCategories(data.categoryData);
@@ -26,7 +28,11 @@ const Home = () => {
         </h1>
       </article>
       <article className="p-4 my-16 flex flex-wrap justify-around items-center gap-8">
-        {categoryCards}
+        {categories.length > 0 ? (
+          categoryCards
+        ) : (
+          <h1 className="text-2xl font-semibold">Loading...</h1>
+        )}
       </article>
     </section>
   );

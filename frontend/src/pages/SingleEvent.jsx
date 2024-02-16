@@ -8,7 +8,9 @@ const SingleEvent = () => {
 
   useEffect(() => {
     async function getEvent() {
-      const res = await fetch(`http://localhost:8000/events/${eventId}`);
+      const res = await fetch(
+        `https://eventsbackend-7ady.onrender.com/events/${eventId}`
+      );
       if (!res.ok) throw Error({ message: "Fetching Error" });
       const data = await res.json();
       setEvent(data.eventData);
@@ -41,7 +43,7 @@ const SingleEvent = () => {
       </section>
     );
   } else {
-    return <h1>Loading...</h1>;
+    return <h1 className="text-2xl font-semibold">Loading...</h1>;
   }
 };
 

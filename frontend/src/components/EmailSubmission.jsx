@@ -8,13 +8,16 @@ const EmailSubmission = ({ eventId, subscribed }) => {
   useEffect(() => {
     async function addEmail() {
       try {
-        const res = await fetch(`http://localhost:8000/events/${eventId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        });
+        const res = await fetch(
+          `https://eventsbackend-7ady.onrender.com/events/${eventId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }),
+          }
+        );
         const data = await res.json();
         alert(data.message);
 

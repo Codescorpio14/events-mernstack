@@ -8,7 +8,7 @@ const CategoryPage = () => {
 
   useEffect(() => {
     async function getEvents() {
-      const res = await fetch("http://localhost:8000/events");
+      const res = await fetch("https://eventsbackend-7ady.onrender.com/events");
       if (!res.ok) throw Error({ message: "Fetching Error" });
       const data = await res.json();
       setEvents(data.eventData);
@@ -36,7 +36,11 @@ const CategoryPage = () => {
         All Events in <span className="uppercase">{cat}</span>
       </h1>
       <div className="flex flex-wrap gap-8 justify-around items-center my-16">
-        {eventCard}
+        {events.length > 0 ? (
+          eventCard
+        ) : (
+          <h1 className="text-2xl font-semibold">Loading...</h1>
+        )}
       </div>
     </div>
   );
